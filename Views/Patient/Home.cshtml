@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/Patient_Layout.cshtml";
+}
+
+<link href="~/Content/DoctorCSS/PatientHome.css" rel="stylesheet" />
+
+<h1 class="h1">Hello @Session["FirstName"]</h1>
+
+<div class="container">
+
+    <div class="content-1">
+        <div class="para">
+            <p>
+                Getting a doctor's appointment is an essential step in managing your healthcare needs.
+                Whether you're seeking routine check-ups, addressing a specific medical concern, or
+                looking for preventive care, scheduling an appointment with a qualified healthcare
+                provider is crucial. The process typically involves contacting your healthcare clinic,
+                hospital, or doctor's office, either by phone or through an online portal, to request a
+                suitable date and time for your visit. Timely appointments can help ensure you receive
+                the medical attention you need and keep track of your health and well-being.
+            </p>
+
+            <div class="btn">
+                @Html.ActionLink("Get Appointment", "DoctorDetails", "Patient", new { id = Session["Id"], name = Session["FirstName"] }, new { @class = "GetAppointment" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="content-1">
+        <img src="~/Content/Images/Img-5.jpg" height="450" />
+    </div>
+
+</div>
+
+
+<div>
+    <h3 class="goal">Our goals</h3>
+    <p class="goal-para">
+        At [Doctor Application Name], we are driven by a clear and unwavering
+        mission: to revolutionize healthcare access and delivery for both patients
+        and doctors. We have set forth several key goals to guide our journey and
+        ensure the best possible experience for all those who use our platform.
+    </p>
+</div>
+
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

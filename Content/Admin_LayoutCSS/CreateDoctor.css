@@ -1,0 +1,73 @@
+﻿.form-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    color: #16558f;
+    width: 200px;
+}
+
+.container {
+    width: 500px;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: lightblue;
+}
+
+h2 {
+    text-align: center;
+    color: #16558f;
+    padding-bottom: 20px;
+}
+
+.form-group {
+    margin-left: 55px;
+}
+
+
+.btn {
+    width:400px;
+    background-color: #16558f;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+    .btn:hover {
+        background-color: #16558f;
+        color: white;
+    }
+
+
+.sign {
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    color: #16558f;
+}
+
+
+.form-group-1 {
+    margin-left: 100px;
+}
+
+
+.error {
+    font-size: small;
+    color:darkred;
+}
+
+
+.message1 {
+    color: green;
+    font-weight: 500;
+    margin-left:50px;
+}
+
+.message2 {
+    color: red;
+    font-weight: 500;
+    margin-left: 50px;
+}

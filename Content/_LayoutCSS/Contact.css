@@ -1,0 +1,119 @@
+﻿.container-1 {
+    text-align: center;
+}
+
+
+            .container-2 {
+                margin-top: -150px;
+                border: 1px solid #16558f;
+                width: 450px;
+                padding: 20px;
+                margin-left:40px;
+            }
+
+            .h1 {
+                color: #16558f;
+                text-align:center;
+            }
+
+            .paragraph{
+                text-align:center;
+            }
+
+            .detail{
+                margin-left:20px;
+                padding:10px;
+            }
+
+                
+                                    .container-3 {
+                                        margin-top:-40px;
+                                        border: 1px solid #16558f;
+                                        width: 500px;
+                                        padding: 20px 0px;
+                                        margin-right:150px;
+                                        margin-bottom:100px;
+
+                                    }
+
+                                    .title{
+                                        margin-bottom:30px;
+                                    }
+
+                                    .remark{
+                                        height:100px;
+                                    }
+
+                                    .color {
+                                        color: #16558f;
+                                    }
+
+                                    #color {
+                                        color: #16558f;
+                                        padding-right:5px;
+                                    }
+
+                                    .inputs .form-group {
+                                        display: flex;
+                                        flex-direction: column;
+                                        margin-bottom: 20px;
+                                    }
+
+                                    .inputs label {
+                                        font-weight: bold;
+                                    }
+
+                                    .inputs input[type="text"] {
+                                        width: 100%;
+                                        padding: 10px;
+                                        border: 1px solid #ccc;
+                                        border-radius: 5px;
+                                    }
+
+                                    .inputs{
+                                        margin-left:100px;
+                                    }
+
+
+
+.highlight {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-1 {
+    flex: 1;
+    padding: 20px;
+}
+
+.add-1 {
+    flex: 2;
+    padding: 20px;
+}
+
+
+.but {
+    margin-top: 20px;
+    background-color: #16558f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+
+.viewbag {
+    color: red;
+    margin-left: 55px;
+    font-weight: 500;
+}
+
+.error {
+    font-size: small;
+    color: darkred;
+}
+
+
+

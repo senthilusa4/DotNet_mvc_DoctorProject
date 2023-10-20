@@ -1,0 +1,111 @@
+﻿@model IEnumerable<DocterSpot.Models.DoctorModel>
+
+@{
+    ViewBag.Title = "DoctorDetails";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<link href="~/Content/Admin_LayoutCSS/DoctorDetails.css" rel="stylesheet" />
+
+<div class="container">
+
+    <h2 class="h2">Doctor details</h2>
+
+    <p class="p"> Updated doctor's profile </p>
+
+    <div> @Html.ActionLink("Create New", "CreateDoctor", "Admin", new { @class = "button" })</div>
+
+    <table border="1" class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialization)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.Photo != null)
+                    {
+                        <a href="data:image;base64,@Convert.ToBase64String(item.Photo)" target="_blank">
+                            <img src="data:image;base64,@Convert.ToBase64String(item.Photo)" alt="Picture" height="60" width="60" />
+                        </a>
+                    }
+                    else
+                    {
+                        <span>No image available</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialization)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "button-1" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

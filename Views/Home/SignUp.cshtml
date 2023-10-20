@@ -1,0 +1,164 @@
+﻿@model DocterSpot.Models.UserModel
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/_LayoutCSS/SignUp.css" rel="stylesheet" />
+<script src="~/Scripts/HomeScripts/SignUp.js"></script>
+<script src="~/Scripts/PreventScripts/Prevent.js"></script>
+<div class="container">
+
+    <h2>Sign up</h2>
+
+    <p class="viewbag">@ViewBag.Message</p>
+
+    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { onsubmit = "return validate();" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label for="FirstName" class="control-label col-md-2">First name</label>
+                <div class="col-md-10">
+                    <input type="text" id="Fname" name="FirstName" placeholder="Enter first name" class="form-control" onfocusout="checkFname()">
+                    <span id="errorFname" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="LastName" class="control-label col-md-2">Last name</label>
+                <div class="col-md-10">
+                    <input type="text" id="Lname" name="LastName" placeholder="Enter last name" class="form-control" onfocusout="checkLname()">
+                    <span id="errorLname" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.DateOfBirth, new { @id = "dob", @class = "form-control", type = "date", onfocusout = "checkDate()", onchange = "checkAge()" })
+                    <span class="error" id="errorDob"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Age" class="control-label col-md-2">Age</label>
+                <div class="col-md-10">
+                    <input type="text" id="age" name="Age" placeholder="Enter age" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Gender</label>
+                <div class="col-md-10">
+                    <label class="radio-inline">
+                        <input type="radio" id="gender" name="Gender" value="Male"> Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="gender" name="Gender" value="Female"> Female
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="gender" name="Gender" value="Others"> Others
+                    </label>
+                    <span id="errorGender" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MobileNumber, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.MobileNumber, new { @id = "number", @class = "form-control", placeholder = "Enter mobile number", onfocusout = "checkNumber()" })
+                    <span class="error" id="errorNumber"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Address" class="control-label col-md-2">Address</label>
+                <div class="col-md-10">
+                    <input type="text" id="address" name="Address" placeholder="Enter address" class="form-control" onfocusout="checkAddress()">
+                    <span id="errorAddress" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="State" class="control-label col-md-2">State</label>
+                <div class="col-md-10">
+                    <select id="state" name="state" class="form-control" onchange="chooseState('state', 'city')">
+                        <option value="">Select a state</option>
+                        <option value="tamilnadu">Tamil Nadu</option>
+                        <option value="kerla">Kerla</option>
+                        <option value="karnataka">Karnataka</option>
+                    </select>
+                    <span id="errorState" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="City" class="control-label col-md-2">City</label>
+                <div class="col-md-10">
+                    <select id="city" name="city" class="form-control">
+                        <option value="">Select a city</option>
+                    </select>
+                    <span id="errorCity" class="error"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Email" class="control-label col-md-2">Email</label>
+                <div class="col-md-10">
+                    <input type="text" id="email" name="Email" placeholder="Enter email" class="form-control" onfocusout="checkEmail()">
+                    <span id="errorEmail" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Password" class="control-label col-md-2">Password</label>
+                <div class="col-md-10">
+                    <input type="password" id="password" name="Password" placeholder="Enter password" class="form-control" onfocusout="checkPassword()">
+                    <span id="errorPassword" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ConfirmPassword" class="control-label col-md-2">Confirm password</label>
+                <div class="col-md-10">
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Enter confirm password" class="form-control" onfocusout="checkConfirmPassword()">
+                    <span id="errorConfirmPassword" class="error"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sign up" class="btn btn-default" />
+                </div>
+            </div>
+
+            <div class="form-group-1">
+                <label for="signUp">Already a member?</label>
+                @Html.ActionLink("Sign in", "SignIn", "Home", new { @class = "sign" })
+            </div>
+
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script>
+
+    // Disable future dates in the date input
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('dob').setAttribute('max', today);
+
+</script>

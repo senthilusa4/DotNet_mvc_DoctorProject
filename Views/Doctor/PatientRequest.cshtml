@@ -1,0 +1,121 @@
+﻿@model IEnumerable<DocterSpot.Models.PatientModel>
+
+@{
+    ViewBag.Title = "PatientRequest";
+    Layout = "~/Views/Shared/Docter_Layout.cshtml";
+}
+<link href="~/Content/DoctorCSS/PatientRequest.css" rel="stylesheet" />
+
+<h2 class="h2">Patient request</h2>
+
+<p class="p">Patient's waiting for the appointment confirmation</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Issue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VisitDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VisitTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Issue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VisitDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VisitTime)
+            </td>
+            <td>
+                @{
+                    var statusList = new List<SelectListItem>
+                            {
+                new SelectListItem { Text = "Waiting", Value = "0", Selected = (item.Status == 0) },
+                new SelectListItem { Text = "Confirm", Value = "1", Selected = (item.Status == 1) },
+                new SelectListItem { Text = "Rejected", Value = "2", Selected = (item.Status == 2) }
+            };
+                }
+
+                @Html.DropDownListFor(modelItem => item.Status, statusList, new { @class = "status-dropdown" })
+
+                <input type="hidden" class="itemrt" value="@item.PatientId" />
+            </td>
+        </tr>
+    }
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function ()
+    {
+        $('.status-dropdown').change(function () {
+            var itemId = $(this).siblings('.itemrt').val();
+            var newStatus = $(this).val();
+
+            $.ajax({
+                url: '@Url.Action("PatientRequest", "Doctor")',
+                type: 'POST',
+                data: { itemId: itemId, status: newStatus },
+                success: function (result)
+                {
+                    if (result.success)
+                    {
+                        console.log(result.message);
+                    }
+                    else
+                    {
+                        console.error(result.message);
+                    }
+                },
+                error: function (xhr, status, error)
+                {
+
+                    console.error(error);
+                }
+            });
+        });
+
+        // Add an onclick method to the dropdown items
+        $('.status-dropdown option').click(function () {
+            // You can perform actions here when a dropdown item is clicked
+            var selectedValue = $(this).val();
+            console.log('Dropdown item clicked with value: ' + selectedValue);
+        });
+    });
+
+</script>
+
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

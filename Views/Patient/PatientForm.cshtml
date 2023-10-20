@@ -1,0 +1,101 @@
+﻿@model DocterSpot.Models.PatientModel
+
+@{
+    ViewBag.Title = "PatientForm";
+    Layout = "~/Views/Shared/Patient_Layout.cshtml";
+}
+
+<link href="~/Content/PatientCSS/PatientForm.css" rel="stylesheet" />
+<script src="~/Scripts/PatientScripts/PatientForm.js"></script>
+
+<div class="container">
+    <h2>Patient form</h2>
+    <p class="viewbag">@ViewBag.Message</p>
+
+    @using (Html.BeginForm("PatientForm", "Patient", FormMethod.Post, new { doctorId = Session["DoctorId"], onsubmit = "return validate();" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.HiddenFor(model => model.DoctorId, new { @id = "doctorId" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PatientName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { placeholder = "", @class = "form-control", @id = "patientName", @onfocusout = "checkPatientName()" } })
+                    <span class="error" id="errorPatientName"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Issue" class="control-label col-md-2">Issue</label>
+                <div class="col-md-10">
+                    <input type="text" id="issue" name="issue" class="form-control" placeholder="Enter issue for visit" onfocusout="checkIssue()">
+                    <span class="error" id="errorIssue"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VisitDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.VisitDate, new { @id = "date", @class = "form-control", type = "date", onfocusout = "checkDate()", onchange = "checkAge()" })
+                    <span class="error" id="errorDob"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VisitTime, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.VisitTime, GetTimeOptions(), new { @class = "form-control", @id = "time", @onchange = "checkTime()" })
+                    <span class="error" id="errorTime"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Get Appointment" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    <div class="form-group-1">
+        @Html.ActionLink("View doctor page", "DoctorDetails", "Patient", new { @class = "sign" })
+    </div>
+</div>
+
+<script>
+    // Disable future dates in the date input
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').setAttribute('min', today);
+</script>
+
+
+@{
+    List<SelectListItem> GetTimeOptions()
+    {
+        var timeOptions = new List<SelectListItem>();
+
+        for (int hour = 9; hour <= 21; hour++) // 9.00am to 9.00pm
+        {
+            var time = new DateTime(1, 1, 1, hour, 0, 0);
+            var formattedTime = time.ToString("h:mm tt");
+            timeOptions.Add(new SelectListItem
+            {
+                Text = formattedTime,
+                Value = formattedTime // Store the formatted time in the database
+            });
+        }
+
+        return timeOptions;
+    }
+}
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

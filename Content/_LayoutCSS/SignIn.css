@@ -1,0 +1,87 @@
+﻿.form {
+    border: 1px solid #16558f;
+    width: 400px;
+    border-radius:5px;
+    margin-top:50px;
+    margin-bottom:100px;
+}
+
+h2 {
+    text-align: center;
+    color: #16558f;
+    padding:20px;
+}
+
+.control-label {
+    color: #16558f;
+}
+
+.form-horizontal{
+    margin-left:50px;
+}
+
+.forgot-password {
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.btn {
+    background-color: #16558f;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left:110px;
+}
+
+
+.btn:hover {
+    background-color: #16558f;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 110px;
+}
+
+
+.sign{
+    text-decoration:none;
+    padding:10px;
+}
+
+.form-group-1{
+    margin-left:60px;
+    margin-bottom:50px;
+}
+
+.form-group{
+    margin-bottom:10px;
+}
+
+.group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
+}
+
+.container {
+    flex: 2;
+    padding-left:70px;
+}
+
+.error {
+    font-size: small;
+    color: darkred;
+}
+
+
+.viewbag {
+    color: red;
+    margin-left: 55px;
+    font-weight: 500;
+}

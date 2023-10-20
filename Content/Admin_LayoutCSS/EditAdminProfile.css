@@ -1,0 +1,57 @@
+﻿.form-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    color: #16558f;
+    width: 200px;
+}
+
+.container {
+    width: 500px;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: lightblue;
+}
+
+h2 {
+    text-align: center;
+    color: #16558f;
+    padding-bottom: 20px;
+}
+
+.form-group {
+    margin-left: 55px;
+}
+
+
+.btn {
+    width: 400px;
+    background-color: #16558f;
+    color: white;
+    margin-top: 20px;
+}
+
+
+    .btn:hover {
+        background-color: #16558f;
+        color: white;
+        margin-top: 20px;
+    }
+
+.sign {
+    text-decoration: none;
+    padding: 10px;
+    color: #16558f;
+    font-weight: 500;
+}
+
+.form-group-1 {
+    margin-left: 142px;
+}
+
+.error {
+    font-size: small;
+    color: darkred;
+}

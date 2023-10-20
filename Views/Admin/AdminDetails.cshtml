@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DocterSpot.Models.AdminModel>
+
+@{
+    ViewBag.Title = "AdminDetails";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<link href="~/Content/Admin_LayoutCSS/AdminDetails.css" rel="stylesheet" />
+
+
+<h2 class="h2">Admin details</h2>
+<p class="p"> Our admin's profile </p>
+
+<div> @Html.ActionLink("Create New", "CreateAdmin", "Admin", new { @class = "button" })</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th> Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.Id , AdminId = Session["Id"] }, new { @class = "button-1" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

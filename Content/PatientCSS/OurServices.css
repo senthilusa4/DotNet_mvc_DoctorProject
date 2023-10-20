@@ -1,0 +1,27 @@
+﻿.content-1 {
+    background-color:lightsteelblue;
+    width: 300px;
+    padding: 20px;
+}
+
+h2{
+    text-align:center;
+    color:#16558f;
+}
+
+.h4{
+    color:orangered;
+    padding:20px;
+    margin-left:30px;
+}
+
+.content-1{
+    border-radius:5px;
+    box-shadow:2px 5px 5px black;
+}
+
+.container{
+    margin-left:200px;
+    margin-bottom:100px;
+}
+

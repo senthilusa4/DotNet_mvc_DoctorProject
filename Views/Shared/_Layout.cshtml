@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HealthCare Application</title>
+
+    <link href="~/Content/_LayoutCSS/Layout.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/8108bf77ec.js" crossorigin="anonymous"></script>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+<nav>
+    <div class="nav-left">
+        <h1> <i class="fa-solid fa-user-doctor"></i> HealthCare </h1>
+    </div>
+
+    <div class=" nav-right">
+        <a href="@Url.Action("Home", "Home")" class="home">Home</a>
+        <a href="@Url.Action("AboutUs", "Home")" class="au">About us</a>
+        <a href="@Url.Action("SignIn", "Home")" class="au">Sign in</a>
+        <a href="@Url.Action("SignUp", "Home")" class="si"> Sign up </a>
+        <a href="@Url.Action("Contact", "Home")" class="su"> Contact </a>
+    </div>
+</nav>
+
+<div class=" body-content">
+    @RenderBody()
+</div>
+
+<footer class="footer">
+    <div class="con">
+        <div class="row">
+            <div class="col">
+                <h4>Home</h4>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Our services </a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">affiliate programa</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Admin</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Manage docter</a></li>
+                    <li><a href="#">Manage admin</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Docter</h4>
+                <ul>
+                    <li><a href="#">Appointment status</a></li>
+                    <li><a href="#">Time avalibility</a></li>
+                    <li><a href="#">Schedule appointment</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Follow us</h4>
+                <div class="links">
+                    <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="copyright"> Copyright &copy; 2023, HealthCare application All Rights Reserved.</p>
+</footer>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+
+    </body>
+</html>

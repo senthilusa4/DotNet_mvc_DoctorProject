@@ -1,0 +1,40 @@
+﻿.h1{
+    color:forestgreen;
+    margin-left:20px;
+}
+
+.content {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+/* First paragraph & image style */
+.para {
+    margin-left: 20px;
+}
+
+.sec2 {
+    text-align: center;
+}
+
+    .sec2 img {
+        max-width: 100%;
+        height: auto;
+    }
+
+/* Second paragraph & image style */
+.para-1 {
+    margin-left: 20px;
+}
+
+
+.sec3 {
+    text-align: center;
+}
+
+    .sec3 img {
+        max-width: 100%;
+        height: auto;
+    }

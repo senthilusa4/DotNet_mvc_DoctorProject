@@ -1,0 +1,84 @@
+﻿@model DocterSpot.Models.ManageDoctorModel
+
+@{
+    ViewBag.Title = "AddDocter";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<link href="~/Content/Admin_LayoutCSS/CreateDoctor.css" rel="stylesheet" />
+<script src="~/Scripts/AdminScripts/CreateDoctor.js"></script>
+
+<div class="container">
+    <h2>Add doctor</h2>
+
+    <p class="message1">@ViewBag.Message1</p>
+    <p class="message2">@ViewBag.Message2</p>
+
+    @using (Html.BeginForm("CreateDoctor", "Admin", FormMethod.Post, new { onsubmit = "return validate();" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label for="FirstName" class="control-label col-md-2">First name</label>
+                <div class="col-md-10">
+                    <input type="text" id="Fname" name="FirstName" placeholder="Enter first name" class="form-control" onfocusout="checkFname()">
+                    <span id="errorFname" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="LastName" class="control-label col-md-2">Last name</label>
+                <div class="col-md-10">
+                    <input type="text" id="Lname" name="LastName" placeholder="Enter last name" class="form-control" onfocusout="checkLname()">
+                    <span id="errorLname" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Email" class="control-label col-md-2">Email</label>
+                <div class="col-md-10">
+                    <input type="text" id="email" name="Email" placeholder="Enter email" class="form-control" onfocusout="checkEmail()">
+                    <span id="errorEmail" class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Password" class="control-label col-md-2">Password</label>
+                <div class="col-md-10">
+                    <input type="password" id="password" name="Password" placeholder="Enter password" class="form-control" onfocusout="checkPassword()">
+                    <span id="errorPassword" class="error"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add doctor" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <div class="form-group-1">
+        @Html.ActionLink("Back to manage doctor", "DoctorDetails", "Admin", new { @class = "sign" })
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

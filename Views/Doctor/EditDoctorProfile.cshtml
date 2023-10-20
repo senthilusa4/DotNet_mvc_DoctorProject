@@ -1,0 +1,224 @@
+﻿@model DocterSpot.Models.DoctorModel
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/Docter_Layout.cshtml";
+}
+
+<link href="~/Content/DoctorCSS/EditDoctorProfile.css" rel="stylesheet" />
+<script src="~/Scripts/DoctorScripts/DoctorProfile.js"></script>
+
+<div class="container">
+
+    <h2>Profile</h2>
+
+    <p class="msg">Please update your profile</p>
+    <p class="msg">Otherwise peoples will not reach you...</p>
+
+    <p class="viewbag">@ViewBag.Message</p>
+
+    @using (Html.BeginForm("EditDoctorProfile", "Doctor", FormMethod.Post, new { onsubmit = "return validate();" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="content">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", onfocusout = "checkFname()" })
+                        <span class="error" id="errorFname"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", onfocusout = "checkLname()" })
+                        <span class="error" id="errorLname"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.DateOfBirth, new { @id = "dob", @class = "form-control", type = "date", onfocusout = "checkDate()", onchange = "checkAge()" })
+                        <span class="error" id="errorDob"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Age" class="control-label col-md-2">Age</label>
+                    <div class="col-md-10">
+                        <input type="text" id="age" name="age" class="form-control" />
+                        <span class="error" id="errorAge"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Gender" class="control-label col-md-2">Gender</label>
+                    <div class="col-md-10">
+                        <label class="radio-inline">
+                            <input type="radio" id="gender" name="gender" value="Male" /> Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" id="gender" name="gender" value="Female" /> Female
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" id="gender" name="gender" value="Others" /> Others
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="DoctorId" class="control-label col-md-2">Doctor id</label>
+                    <div class="col-md-10">
+                        <input type="text" id="doctorId" name="doctorId" class="form-control" placeholder="Enter doctor id" onfocusout="checkDoctorId()" />
+                        <span class="error" id="errorDoctorId"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Specialization" class="control-label col-md-2">Specialization</label>
+                    <div class="col-md-10">
+                        <input type="text" id="specialization" name="specialization" class="form-control" placeholder="Specialization" onfocusout="checkSpecialization()" />
+                        <span class="error" id="errorSpecialization"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MobileNumber, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholder = "Enter mobile number", onfocusout = "checkNumber()" })
+                        <span class="error" id="errorNumber"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Address" class="control-label col-md-2">Address</label>
+                    <div class="col-md-10">
+                        <input type="text" id="address" name="address" class="form-control" placeholder="Enter address" onfocusout="checkAddress()" />
+                        <span class="error" id="errorAddress"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="State" class="control-label col-md-2">State</label>
+                    <div class="col-md-10">
+                        <select id="state" name="state" class="form-control" onchange="chooseState('state', 'city')">
+                            <option value="">Select a state</option>
+                            <option value="tamilnadu">Tamil Nadu</option>
+                            <option value="kerala">kerala</option>
+                            <option value="karnataka">Karnataka</option>
+                        </select>
+                        <span id="errorState" class="error"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="City" class="control-label col-md-2">City</label>
+                    <div class="col-md-10">
+                        <select id="city" name="city" class="form-control">
+                            <option value="">Select a city</option>
+                        </select>
+                        <span id="errorCity" class="error"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", onfocusout = "checkEmail()" })
+                        <span class="error" id="errorEmail"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", onfocusout = "checkPassword()" })
+                        <span class="error" id="errorPassword"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.Photo, new { id = "PhotoHide" })
+                        @Html.LabelFor(model => model.Photo, "Picture", htmlAttributes: new { @class = "control-label col-md-2", @id = "label-2" })
+                        <input type="file" id="Photo" name="file" accept=".jpg,.jpeg,.png">
+                        <span class="error" id="errorPhoto"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    // Disable future dates in the date input
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('dob').setAttribute('max', today);
+</script>
+
+
+<!--Size validation-->
+<script>
+    const fileInput = document.getElementById('Photo');
+    fileInput.addEventListener('change', function () {
+        const selectedFile = fileInput.files[0];
+
+        if (selectedFile) {
+            if (selectedFile.size <= 1024 * 1024) {
+            } else 
+                var er = 'File size exceeds 1 MB.';
+                document.getElementById("errorPhoto").textContent = er;
+            }
+        }
+    });
+</script>
+
+
+<!-- Converting image to byte[] using base 64 convertion-->
+<script>
+    document.getElementById("Photo").addEventListener("change", function (event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var base64String = e.target.result.split(",")[1];
+            document.getElementById("PhotoHide").value = base64String;
+        };
+        reader.readAsDataURL(file);
+    });
+</script>
+
+
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>
+

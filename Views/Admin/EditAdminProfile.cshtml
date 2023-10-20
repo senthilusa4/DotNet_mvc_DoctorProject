@@ -1,0 +1,77 @@
+﻿@model DocterSpot.Models.AdminModel
+
+@{
+    ViewBag.Title = "EditAdminProfile";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<link href="~/Content/Admin_LayoutCSS/EditAdminProfile.css" rel="stylesheet" />
+<script src="~/Scripts/AdminScripts/AdminProfile.js"></script>
+
+<div class="container">
+
+    <h2>Edit profile</h2>
+
+    @using (Html.BeginForm("EditAdminProfile", "Admin", FormMethod.Post, new { onsubmit = "return validate();" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FirstName, new { @id= "Fname", @class = "form-control", onfocusout = "checkFname()" })
+                    <span class="error" id="errorFname"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LastName, new {@id="Lname", @class = "form-control", onfocusout = "checkLname()" })
+                    <span class="error" id="errorLname"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, new {@id="email", @class = "form-control", onfocusout = "checkEmail()" })
+                    <span class="error" id="errorEmail"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new {@id="password", @class = "form-control", onfocusout = "checkPassword()" })
+                    <span class="error" id="errorPassword"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="form-group-1">
+        @Html.ActionLink("Go to home", "HomeAdmin", "Admin", new { @class = "sign" })
+    </div>
+</div>
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

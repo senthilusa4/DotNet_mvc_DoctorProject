@@ -1,0 +1,67 @@
+﻿.container {
+    width: 500px;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: lightblue;
+}
+
+h2 {
+    text-align: center;
+    color: #16558f;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.control-label {
+    color: #16558f;
+    width: 200px;
+}
+
+
+.form-group {
+    margin-left: 55px;
+}
+
+
+.btn {
+    background-color: #16558f;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 70px;
+}
+
+
+    .btn:hover {
+        background-color: #16558f;
+        color: white;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        margin-left: 70px;
+    }
+
+
+.sign {
+    text-decoration: none;
+    padding: 10px;
+    color: #16558f;
+    font-weight:500;
+}
+
+.form-group-1 {
+    margin-left: 125px;
+}
+
+.error {
+    font-size: small;
+    color: darkred;
+}
+
+.viewbag{
+    color:red;
+    margin-left:20px;
+}

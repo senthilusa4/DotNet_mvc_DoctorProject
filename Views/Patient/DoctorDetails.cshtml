@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DocterSpot.Models.DoctorModel>
+
+@{
+    ViewBag.Title = "DoctorDetails";
+    Layout = "~/Views/Shared/Patient_Layout.cshtml";
+}
+
+<link href="~/Content/PatientCSS/DoctorDetails.css" rel="stylesheet" />
+
+@using (Html.BeginForm("DoctorDetails", "Patient", FormMethod.Get))
+{
+    <div class="form-group">
+        <div class="input-group">
+            @Html.TextBoxFor(model => model.FirstOrDefault().Specialization, new { @id = "filter", @class = "form-control", placeholder = "Enter specialization based search" })
+            <div class="input-group-btn">
+                <input type="submit" value="Search" id="searchButton" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container mt-4">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card" style="height:350px">
+
+                    @if (item.Photo != null)
+                    {
+                        <a href="data:image;base64,@Convert.ToBase64String(item.Photo)" target="_blank">
+                            <img src="data:image;base64,@Convert.ToBase64String(item.Photo)" class="card-img-top" alt="Doctor Image" style="height:200px" />
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="no-image">No image available</span>
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">Dr.@Html.DisplayFor(modelItem => item.FirstName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Specialization)</p>
+                        @Html.ActionLink("Select", "PatientForm", new { doctorId = item.Id, id = Session["Id"], name = Session["FirstName"] }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#searchButton').click(function () {
+            var specializationFilter = $('#filter').val();
+            $.ajax({
+                url: '@Url.Action("DoctorDetails", "Patient")',
+                type: 'GET',
+                data: { specializationFilter: specializationFilter },
+                success: function (data) {
+                    $('#doctorList').html(data);
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Prevent back  -->
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
+</BODY>

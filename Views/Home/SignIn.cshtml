@@ -1,0 +1,68 @@
+﻿@model DocterSpot.Models.UserModel
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/_LayoutCSS/SignIn.css" rel="stylesheet" />
+<script src="~/Scripts/HomeScripts/SignIn.js"></script>
+<script src="~/Scripts/PreventScripts/Prevent.js"></script>
+<div class="group">
+
+    <div class="container">
+        <img src="~/Content/Images/Image-1.jpg" height="600" width="600" />
+    </div>
+
+    <div class="container">
+        <div class="form">
+            <h2>Sign in</h2>
+
+            <p class="viewbag">@ViewBag.Message</p>
+
+            @using (Html.BeginForm("SignIn", "Home", FormMethod.Post, new { onsubmit = "return validate();" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <label for="Email" class="control-label col-md-2">Email</label>
+                        <div class="col-md-10">
+                            <input type="text" id="email" name="email" placeholder="Enter your email" class="form-control" onfocusout="checkEmail()">
+                            <span id="errorEmail" class="error"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Password" class="control-label col-md-2">Password</label>
+                        <div class="col-md-10">
+                            <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control" onfocusout="checkPassword()">
+                            <span id="errorPassword" class="error"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.ActionLink("Forgot password", "ForgotPassword", "", new { @class = "forgot-password" })
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Sign in" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                    <div class="form-group-1">
+                        <label for="signUp">Not a member?</label>
+                        @Html.ActionLink("Sign up", "SignUp", "Home", new { @class = "sign" })
+
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>

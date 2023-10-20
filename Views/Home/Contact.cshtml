@@ -1,0 +1,93 @@
+﻿@model DocterSpot.Models.ContactModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - About us</title>
+    <link href="~/Content/_LayoutCSS/Contact.css" rel="stylesheet" />
+    <script src="~/Scripts/AdminScripts/Contact.js"></script>
+    <script src="~/Scripts/PreventScripts/Prevent.js"></script>
+    <script src="https://kit.fontawesome.com/8108bf77ec.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-1">
+        <div class="contact">
+            <h1 class="h1">Contact us</h1>
+            <p class="paragraph">Any question or remarks? Just write us a message</p>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <div class="container-2">
+            <div class="add-1">
+                <div class="title">
+                    <h1 class="h1">Contact information</h1>
+                    <p class="paragraph">Say something to start a live chat!</p>
+                </div>
+
+                <div class="detail">
+                    <p><i id="color" class="fas fa-phone"></i> 0123-456-789</p>
+                    <p><i id="color" class="far fa-envelope"></i> healthcare@gmail.com</p>
+                    <p>
+                        <i id="color" class="fas fa-location-dot"></i>
+                        HealthCare hospital,
+                        Nehru street,
+                        100 feet road,
+                        Tirupur-639852
+                    </p>
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125281.99161513761!2d77.28141012138015!3d11.108739502975695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba907b0424d75b9%3A0x4750551698a91687!2sTiruppur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1697457655952!5m2!1sen!2sin"
+                            width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-3">
+            <div class="add-1">
+                <div class="title">
+                    <h1 class="h1">Get in touch</h1>
+                    <p class="paragraph">Any question or remarks? Just write us a message</p>
+                </div>
+
+                <p class="viewbag">@ViewBag.Message</p>
+
+                <div class="inputs">
+                    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { onsubmit = "return validate();" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "color" })
+                        @Html.TextBoxFor(model => model.Name, new { @id = "Fname", @placeholder = "Enter name", onfocusout = "checkFname()" })
+                        <span class="error" id="errorFname"></span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, new {  @class = "color" })
+                        @Html.TextBoxFor(model => model.Email, new { @id = "email", @placeholder = "Enter email", onfocusout = "checkEmail()" })
+                        <span class="error" id="errorEmail"></span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MobileNumber, new { @class = "color" })
+                        @Html.TextBoxFor(model => model.MobileNumber, new { @id = "number", @placeholder = "Enter mobile number", onfocusout = "checkNumber()" })
+                        <span class="error" id="errorNumber"></span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Remarks, new { @class = "color" })
+                        @Html.TextAreaFor(model => model.Remarks, new { @id = "Feedback", @class = "remark", onfocusout = "checkFeedback()" })
+                        <span class="error" id="errorFeedback"></span>
+                    </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="but" value="Send" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

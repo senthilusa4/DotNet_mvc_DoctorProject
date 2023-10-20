@@ -1,0 +1,49 @@
+﻿.h2 {
+    color: #16558f;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.p {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.table {
+    margin-top: 30px;
+    border-collapse: collapse;
+    text-align: center;
+    width:70%;
+    margin-left:200px;
+}
+
+tr {
+    border: 1px solid #000;
+}
+
+td {
+    border: 1px solid #000;
+}
+
+th {
+    border: 1px solid #000;
+}
+
+.table td {
+    padding: 5px;
+}
+
+
+.table th {
+    padding: 10px;
+    color: white;
+    background-color: #16558f;
+}
+
+.table tr:nth-child(even) {
+    background-color: aliceblue;
+}
+
+
+.table tr:nth-child(odd) {
+    background-color: whitesmoke;

@@ -1,0 +1,64 @@
+﻿.msg{
+    color:#16558f;
+    font-weight:500;
+    margin-left:50px;
+}
+
+.content{
+    margin-top:50px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    color: #16558f;
+    width: 200px;
+}
+
+.container {
+    width: 500px;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: lightblue;
+}
+
+h2 {
+    text-align: center;
+    color: #16558f;
+    padding-bottom: 20px;
+}
+
+.form-group {
+    margin-left: 55px;
+}
+
+
+.btn {
+    width:400px;
+    background-color: #16558f;
+    color: white;
+    margin-top: 20px;
+}
+
+
+    .btn:hover {
+        background-color: #16558f;
+        color: white;
+        margin-top: 20px;
+    }
+
+
+.error {
+    font-size: small;
+    color: darkred;
+}
+
+
+.viewbag {
+    color: red;
+    margin-left: 50px;
+    font-weight: 500;
+}
