@@ -65,10 +65,15 @@
 </div>
 
 <script>
-    // Disable future dates in the date input
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('date').setAttribute('min', today);
+  // Get tomorrow's date
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1); // Set date to tomorrow
+  const tomorrowISO = tomorrow.toISOString().split('T')[0];
+  
+  // Set tomorrow as the minimum date, disabling past and today's date
+  document.getElementById('date').setAttribute('min', tomorrowISO);
 </script>
+
 
 
 @{
